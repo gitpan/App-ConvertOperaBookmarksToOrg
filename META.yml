@@ -6,7 +6,8 @@ build_requires:
   File::Spec: '0'
   IO::Handle: '0'
   IPC::Open3: '0'
-  Test::More: '0'
+  Test::Differences: '0'
+  Test::More: '0.98'
 configure_requires:
   ExtUtils::MakeMaker: '6.30'
 dynamic_config: 0
@@ -24,7 +25,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=App-ConvertOperaBookmarksToOrg
   homepage: https://metacpan.org/release/App-ConvertOperaBookmarksToOrg
   repository: git://github.com/perlancar/perl-App-ConvertOperaBookmarksToOrg.git
-version: '0.02'
+version: '0.03'
 x_Dist_Zilla:
   perl:
     version: '5.018001'

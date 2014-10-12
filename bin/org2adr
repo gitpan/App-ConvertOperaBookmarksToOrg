@@ -4,7 +4,7 @@
 # and generated automatically using Dist::Zilla::Plugin::Rinci::ScriptFromFunc version 0.01
 
 our $DATE = '2014-10-12'; # DATE
-our $VERSION = '0.02'; # VERSION
+our $VERSION = '0.03'; # VERSION
 
 use 5.010001;
 use strict;
@@ -31,7 +31,7 @@ org2adr - Convert back Org to Opera bookmarks (bookmarks.adr)
 
 =head1 VERSION
 
-This document describes version 0.02 of org2adr (from Perl distribution App-ConvertOperaBookmarksToOrg), released on 2014-10-12.
+This document describes version 0.03 of org2adr (from Perl distribution App-ConvertOperaBookmarksToOrg), released on 2014-10-12.
 
 =head1 SYNOPSIS
 

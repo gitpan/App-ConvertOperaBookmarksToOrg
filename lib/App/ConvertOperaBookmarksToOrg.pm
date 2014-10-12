@@ -1,13 +1,18 @@
 package App::ConvertOperaBookmarksToOrg;
 
 our $DATE = '2014-10-12'; # DATE
-our $VERSION = '0.02'; # VERSION
+our $VERSION = '0.03'; # VERSION
 
 use 5.010001;
 use strict;
 use warnings;
 
 use Sort::ByExample;
+
+require Exporter;
+our @ISA = qw(Exporter);
+our @EXPORT_OK = qw(convert_opera_bookmarks_to_org
+                    convert_org_to_opera_bookmarks);
 
 my $sorter = Sort::ByExample->sorter([
     "ID",
@@ -59,11 +64,18 @@ _
             pos => 0,
             req => 1,
         },
+        exclude_trash => {
+            schema => 'bool',
+            cmdline_aliases => { T=>{} },
+        },
     },
 };
 sub convert_opera_bookmarks_to_org {
     my %args = @_;
 
+    my $exclude_trash = $args{exclude_trash};
+
+    my $in_trash;
     my $cur_level = 1;
     my @sections;
     my @ct;
@@ -87,16 +99,22 @@ sub convert_opera_bookmarks_to_org {
         my %sfields = $section->[1] =~ /\s*([^=]+)=(.*)/g;
         if ($sname eq 'FOLDER') {
             my $name = $sfields{NAME} // '';
-            push @ct, ("*" x $cur_level), " FOLDER: $name\n";
-            for (grep {!/^(ID|NAME)$/} $sorter->(keys %sfields)) {
-                push @ct, "- $_ :: $sfields{$_}\n";
+            $in_trash = 1 if $name eq 'Trash' && $cur_level == 1;
+            $in_trash = 0 if $name ne 'Trash' && $cur_level == 1;
+            unless ($in_trash && $exclude_trash) {
+                push @ct, ("*" x $cur_level), " FOLDER: $name\n";
+                for (grep {!/^(ID|NAME)$/} $sorter->(keys %sfields)) {
+                    push @ct, "- $_ :: $sfields{$_}\n";
+                }
             }
             $cur_level++;
         } elsif ($sname eq 'URL') {
             my $name = $sfields{NAME} // '';
-            push @ct, ("*" x $cur_level), " URL: $name\n";
-            for (grep {!/^(ID|NAME)$/} $sorter->(keys %sfields)) {
-                push @ct, "- $_ :: $sfields{$_}\n";
+            unless ($in_trash && $exclude_trash) {
+                push @ct, ("*" x $cur_level), " URL: $name\n";
+                for (grep {!/^(ID|NAME)$/} $sorter->(keys %sfields)) {
+                    push @ct, "- $_ :: $sfields{$_}\n";
+                }
             }
         } else {
             warn "Unknown section '$sname', skipped";
@@ -171,7 +189,9 @@ sub convert_org_to_opera_bookmarks {
         }
         push @ct, "\n";
     }
-    push @ct, "-\n\n" for 1..$prev_level;
+    if (defined $prev_level) {
+        push @ct, "-\n\n" for 1..$prev_level;
+    }
     [200, "OK", join("", @ct)];
 }
 
@@ -191,7 +211,7 @@ App::ConvertOperaBookmarksToOrg - Convert Opera bookmarks to Org
 
 =head1 VERSION
 
-This document describes version 0.02 of App::ConvertOperaBookmarksToOrg (from Perl distribution App-ConvertOperaBookmarksToOrg), released on 2014-10-12.
+This document describes version 0.03 of App::ConvertOperaBookmarksToOrg (from Perl distribution App-ConvertOperaBookmarksToOrg), released on 2014-10-12.
 
 =head1 DESCRIPTION
 
@@ -231,6 +251,8 @@ that Opera has closed some of its services in the past.
 Arguments ('*' denotes required arguments):
 
 =over 4
+
+=item * B<exclude_trash> => I<bool>
 
 =item * B<input>* => I<str>
 
