@@ -4,7 +4,7 @@ use warnings;
 
 # this test was generated with Dist::Zilla::Plugin::Test::Compile 2.039
 
-use Test::More  tests => 3 + ($ENV{AUTHOR_TESTING} ? 1 : 0);
+use Test::More  tests => 5 + ($ENV{AUTHOR_TESTING} ? 1 : 0);
 
 
 
@@ -13,8 +13,10 @@ my @module_files = (
 );
 
 my @scripts = (
+    'bin/adr2org',
     'bin/convert-opera-bookmarks-to-org',
-    'bin/convert-org-to-opera-bookmarks'
+    'bin/convert-org-to-opera-bookmarks',
+    'bin/org2adr'
 );
 
 # no fake home requested

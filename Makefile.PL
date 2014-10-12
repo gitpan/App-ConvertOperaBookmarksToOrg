@@ -19,7 +19,9 @@ my %WriteMakefileArgs = (
   "DISTNAME" => "App-ConvertOperaBookmarksToOrg",
   "EXE_FILES" => [
     "bin/convert-opera-bookmarks-to-org",
-    "bin/convert-org-to-opera-bookmarks"
+    "bin/convert-org-to-opera-bookmarks",
+    "bin/adr2org",
+    "bin/org2adr"
   ],
   "LICENSE" => "perl",
   "NAME" => "App::ConvertOperaBookmarksToOrg",
@@ -33,7 +35,7 @@ my %WriteMakefileArgs = (
     "IPC::Open3" => 0,
     "Test::More" => 0
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.02",
   "test" => {
     "TESTS" => "t/*.t"
   }

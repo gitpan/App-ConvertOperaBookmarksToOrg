@@ -7,8 +7,10 @@ META.json
 META.yml
 Makefile.PL
 README
+bin/adr2org
 bin/convert-opera-bookmarks-to-org
 bin/convert-org-to-opera-bookmarks
+bin/org2adr
 dist.ini
 lib/App/ConvertOperaBookmarksToOrg.pm
 t/00-compile.t

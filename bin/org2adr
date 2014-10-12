@@ -17,7 +17,7 @@ Perinci::CmdLine::Any->new(
 )->run;
 
 # ABSTRACT: Convert back Org to Opera bookmarks (bookmarks.adr)
-# PODNAME: convert-org-to-opera-bookmarks
+# PODNAME: org2adr
 
 __END__
 
@@ -27,17 +27,17 @@ __END__
 
 =head1 NAME
 
-convert-org-to-opera-bookmarks - Convert back Org to Opera bookmarks (bookmarks.adr)
+org2adr - Convert back Org to Opera bookmarks (bookmarks.adr)
 
 =head1 VERSION
 
-This document describes version 0.02 of convert-org-to-opera-bookmarks (from Perl distribution App-ConvertOperaBookmarksToOrg), released on 2014-10-12.
+This document describes version 0.02 of org2adr (from Perl distribution App-ConvertOperaBookmarksToOrg), released on 2014-10-12.
 
 =head1 SYNOPSIS
 
 Usage:
 
- % convert-org-to-opera-bookmarks
+ % org2adr
 
 Examples:
 
@@ -45,7 +45,7 @@ Examples:
 
 To see all options:
 
- % convert-org-to-opera-bookmarks --help
+ % org2adr --help
 
 =head1 DESCRIPTION
 

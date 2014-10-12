@@ -2,15 +2,20 @@ NAME
     App::ConvertOperaBookmarksToOrg - Convert Opera bookmarks to Org
 
 VERSION
-    This document describes version 0.01 of App::ConvertOperaBookmarksToOrg
+    This document describes version 0.02 of App::ConvertOperaBookmarksToOrg
     (from Perl distribution App-ConvertOperaBookmarksToOrg), released on
-    2014-10-04.
+    2014-10-12.
 
 DESCRIPTION
     This distribution provides the following utilities:
 
      convert-opera-bookmarks-to-org
      convert-org-to-opera-bookmarks
+
+    Shorter-named scripts are also provided as aliases, respectively:
+
+     adr2org
+     org2adr
 
 FUNCTIONS
   convert_opera_bookmarks_to_org(%args) -> [status, msg, result, meta]

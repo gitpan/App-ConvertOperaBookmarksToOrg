@@ -1,7 +1,7 @@
 package App::ConvertOperaBookmarksToOrg;
 
-our $DATE = '2014-10-04'; # DATE
-our $VERSION = '0.01'; # VERSION
+our $DATE = '2014-10-12'; # DATE
+our $VERSION = '0.02'; # VERSION
 
 use 5.010001;
 use strict;
@@ -153,13 +153,15 @@ sub convert_org_to_opera_bookmarks {
             warn "Unknown section type '$type', skipped";
             next;
         }
-        $level = length($level);
-        if (defined($prev_level) && $level < $prev_level) {
-            for ($level .. $prev_level-1) {
-                push @ct, "-\n\n";
+        if ($type eq 'FOLDER') {
+            $level = length($level);
+            if (defined($prev_level) && $level <= $prev_level) {
+                for ($level .. $prev_level) {
+                    push @ct, "-\n\n";
+                }
             }
+            $prev_level = $level;
         }
-        $prev_level = $level;
         push @ct, "#$type\n";
         push @ct, "\tID=", ++$id, "\n";
         push @ct, "\tNAME=$sname\n";
@@ -169,6 +171,7 @@ sub convert_org_to_opera_bookmarks {
         }
         push @ct, "\n";
     }
+    push @ct, "-\n\n" for 1..$prev_level;
     [200, "OK", join("", @ct)];
 }
 
@@ -188,7 +191,7 @@ App::ConvertOperaBookmarksToOrg - Convert Opera bookmarks to Org
 
 =head1 VERSION
 
-This document describes version 0.01 of App::ConvertOperaBookmarksToOrg (from Perl distribution App-ConvertOperaBookmarksToOrg), released on 2014-10-04.
+This document describes version 0.02 of App::ConvertOperaBookmarksToOrg (from Perl distribution App-ConvertOperaBookmarksToOrg), released on 2014-10-12.
 
 =head1 DESCRIPTION
 
@@ -196,6 +199,11 @@ This distribution provides the following utilities:
 
  convert-opera-bookmarks-to-org
  convert-org-to-opera-bookmarks
+
+Shorter-named scripts are also provided as aliases, respectively:
+
+ adr2org
+ org2adr
 
 =head1 FUNCTIONS
 

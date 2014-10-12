@@ -17,7 +17,7 @@ Perinci::CmdLine::Any->new(
 )->run;
 
 # ABSTRACT: Convert Opera bookmarks (bookmarks.adr) to Org document
-# PODNAME: convert-opera-bookmarks-to-org
+# PODNAME: adr2org
 
 __END__
 
@@ -27,17 +27,17 @@ __END__
 
 =head1 NAME
 
-convert-opera-bookmarks-to-org - Convert Opera bookmarks (bookmarks.adr) to Org document
+adr2org - Convert Opera bookmarks (bookmarks.adr) to Org document
 
 =head1 VERSION
 
-This document describes version 0.02 of convert-opera-bookmarks-to-org (from Perl distribution App-ConvertOperaBookmarksToOrg), released on 2014-10-12.
+This document describes version 0.02 of adr2org (from Perl distribution App-ConvertOperaBookmarksToOrg), released on 2014-10-12.
 
 =head1 SYNOPSIS
 
 Usage:
 
- % convert-opera-bookmarks-to-org
+ % adr2org
 
 Examples:
 
@@ -45,7 +45,7 @@ Examples:
 
 To see all options:
 
- % convert-opera-bookmarks-to-org --help
+ % adr2org --help
 
 =head1 DESCRIPTION
 
